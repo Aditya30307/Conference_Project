@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Booking Successful</title>
+  <style>
+    body {
+      background-color: #e8f5e9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .success-container {
+      text-align: center;
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    .success-container h1 {
+      color: #2e7d32;
+      margin-bottom: 1rem;
+    }
+
+    .success-container p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .success-container a {
+      text-decoration: none;
+      color: #fff;
+      background-color: #43a047;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.2s;
+    }
+
+    .success-container a:hover {
+      background-color: #2e7d32;
+    }
+  </style>
+</head>
+<body>
+  <div class="success-container">
+    <h1>✅ Booking Successful!</h1>
+    <p>Your booking at <span id="station-name"></span> has been confirmed.</p>
+    <a href="index.html">Back to Home</a>
+  </div>
+
+  <script>
+    const station = localStorage.getItem("selectedStation");
+    document.getElementById("station-name").textContent = localStorage.getItem("StName") || "the selected station";
+    
+  </script>
+</body>
+</html>
