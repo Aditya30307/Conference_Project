@@ -85,20 +85,67 @@
     <label for="time">Time</label>
     <input type="time" id="time" name="time" required />
 
-
-    <button type="submit" id = "bookingConfirm">Book Now</button>
+    <button type="submit" id="bookingConfirm">Book Now</button>
   </form>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Check if location is already generated
+      let savedLocation = localStorage.getItem("randomLocation");
+
+      if (!savedLocation) {
+        // Generate a fixed random location only once
+        const lat = (Math.random() * 180 - 90).toFixed(5);
+        const lng = (Math.random() * 360 - 180).toFixed(5);
+        savedLocation = JSON.stringify({ lat, lng });
+
+        // Store it in localStorage
+        localStorage.setItem("randomLocation", savedLocation);
+      }
+
+      // Retrieve user information from localStorage (set during login)
+      const username = localStorage.getItem("username") || "";
+      const email = localStorage.getItem("Email") || "";
+      const model = localStorage.getItem("Model") || "";
+      const carType = localStorage.getItem("CarType") || "";
+      const StName = localStorage.getItem("StName") || "";
+
+      // Fill in the form with stored data (from login)
+      document.getElementById("name").value = username;
+      document.getElementById("email").value = email;
+      document.getElementById("model").value = model;
+      document.getElementById("CarType").value = carType;
+      document.getElementById("StName").value = StName;
+
+      // Retrieve the last station name if available
+      const lastStName = localStorage.getItem("StNameValue");
+      if (lastStName) {
+        document.getElementById("StName").value = lastStName;
+      }
+
+      // Listen for form submission
+      document.getElementById("bookingConfirm").addEventListener("click", (e) => {
+        e.preventDefault(); // Prevent form submission
+
+        // Get current booking data
+        const stationName = document.getElementById("StName").value;
+        const date = document.getElementById("date").value;
+        const time = document.getElementById("time").value;
+
+        // Retrieve current bookings array or start fresh
+        let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+
+        // Add the new booking with the fixed location
+        bookings.push({ stationName, date, time, location: JSON.parse(savedLocation) });
+
+        // Save updated bookings and other values
+        localStorage.setItem("bookings", JSON.stringify(bookings));
+        localStorage.setItem("StNameValue", stationName); // Store current station name
+
+        // Redirect to success page
+        window.location.href = "/success.html";
+      });
+    });
+  </script>
 </body>
-<script>
-    document.getElementById("StName").value = localStorage.getItem("StName");
-    document.getElementById("bookingConfirm").addEventListener("click", ()=>{
-        window.location.href = "/success.html"
-    })
-    document.getElementById("email").value = localStorage.getItem("Email");
-    document.getElementById("name").value = localStorage.getItem("username");
-
-    document.getElementById("model").value = localStorage.getItem("Model");
-    document.getElementById("CarType").value = localStorage.getItem("CarType");
-
-</script>
 </html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking History</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      padding: 2em;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1em;
+      color: #333;
+    }
+
+    .history {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1em;
+    }
+
+    .history-header,
+    .historybox {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em;
+      border-bottom: 1px solid #eee;
+    }
+
+    .history-header {
+      font-weight: bold;
+      background-color: #f0f2f5;
+      border-radius: 6px 6px 0 0;
+    }
+
+    .elem {
+      flex: 1;
+      text-align: center;
+      color: #333;
+    }
+
+    .historybox:last-child {
+      border-bottom: none;
+    }
+
+    .location-link {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .location-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h2>Booking History</h2>
+
+  <div class="history" id="history-container">
+    <!-- History records will be appended here -->
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const historyContainer = document.getElementById("history-container");
+
+      // Retrieve and parse bookings from localStorage
+      let bookings;
+      try {
+        const stored = JSON.parse(localStorage.getItem("bookings"));
+        bookings = Array.isArray(stored) ? stored : [];
+      } catch (err) {
+        bookings = [];
+      }
+
+      // Retrieve the saved location (same for all bookings)
+      const savedLocation = JSON.parse(localStorage.getItem("randomLocation")) || { lat: "0", lng: "0" };
+      const mapsLink = `https://www.google.com/maps?q=${savedLocation.lat},${savedLocation.lng}`;
+
+      // Create header row
+      const header = document.createElement("div");
+      header.classList.add("historybox", "history-header");
+
+      ["Station Name", "Date", "Time", "Location"].forEach(title => {
+        const div = document.createElement("div");
+        div.classList.add("elem");
+        div.innerText = title;
+        header.appendChild(div);
+      });
+
+      historyContainer.appendChild(header);
+
+      // Generate rows for each booking
+      bookings.forEach(booking => {
+        const row = document.createElement("div");
+        row.classList.add("historybox");
+
+        const station = document.createElement("div");
+        station.classList.add("elem");
+        station.innerText = booking.stationName;
+
+        const date = document.createElement("div");
+        date.classList.add("elem");
+        date.innerText = booking.date;
+
+        const time = document.createElement("div");
+        time.classList.add("elem");
+        time.innerText = booking.time;
+
+        const location = document.createElement("div");
+        location.classList.add("elem");
+
+        // Create clickable map link
+        const a = document.createElement("a");
+        a.href = mapsLink;
+        a.target = "_blank";
+        a.classList.add("location-link");
+        a.innerText = "View Map";
+
+        location.appendChild(a);
+
+        row.appendChild(station);
+        row.appendChild(date);
+        row.appendChild(time);
+        row.appendChild(location);
+
+        historyContainer.appendChild(row);
+      });
+
+      // If no bookings, show message
+      if (bookings.length === 0) {
+        const msg = document.createElement("p");
+        msg.style.textAlign = "center";
+        msg.style.padding = "1em";
+        msg.innerText = "No bookings found.";
+        historyContainer.appendChild(msg);
+      }
+    });
+  </script>
+</body>
+</html>

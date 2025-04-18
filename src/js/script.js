@@ -9,6 +9,7 @@ export function logic() {
   const sign = document.getElementById("sign");
   const ad = document.querySelector(".ad-slider");
   const model = document.getElementsByClassName("model");
+  const history = document.getElementById("history");
   const carInfo = document.getElementsByClassName("carInfo1");
   let card = 0;
   const wheels = 2;
@@ -20,8 +21,18 @@ export function logic() {
   let ads = ["Express Car Wash", "Perfect Stop"];
   const adnames = document.getElementsByClassName("ad-slide"); // Select actual ad slide elements
   const naming = ["Express Car Wash", "Perfect Stop"]
-  let adIndex = 0;
 
+  const model1 = localStorage.getItem("Model") || "";
+  const carType = localStorage.getItem("CarType") || "";
+
+  document.getElementById("model").value = model1;
+  document.getElementById("CarType").value = carType;
+
+  history.addEventListener("click", ()=>{
+    window.location.href = "/history.html"
+  });
+
+  let adIndex = 0;
   const adSlider = document.getElementById("adSlides");
   const totalAdSlides = adSlider.children.length;
   const leftBtn = document.querySelector(".ad-left");

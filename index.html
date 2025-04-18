@@ -13,7 +13,7 @@
             <img class="pic" src="/public/pic.png" alt="">
             <div class="name" id = "usinglocal">User</div>
             <div class="profile">Vehicle
-                <select class="selection" placeholder="Choose vehicle type">
+                <select id="CarType" class="selection" placeholder="Choose vehicle type">
                     <option value="" class="options" disabled selected>Select a Vehicle</option>
                     <option value="2 Wheeler" class="options">2 Wheeler</option>
                     <option value="3 Wheeler" class="options">3 Wheeler</option>
@@ -22,12 +22,12 @@
                 </select>
             </div>
             <div class="profile model">Model
-                <input type="text" class="carInfo1" placeholder="Enter the model ">
+                <input id="model"type="text" class="carInfo1" placeholder="Enter the model ">
             </div>
             <div class="profile variant">Variant
                 <input type="text" class="carInfo2" placeholder="Enter the Variant">
             </div>
-            <div class="profile">Account</div>
+            <div class="profile" id="history">Booking history</div>
             <div class="profile">Settings</div>
             <div id="model-wrapper">
                 <iframe 
