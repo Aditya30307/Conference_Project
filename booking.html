@@ -73,14 +73,18 @@
     <label for="Station Name">Station Name</label>
     <input type="text" id="StName" name="StName" required />
 
+    <label for="Vehicle Type">Vehicle Type</label>
+    <input type="text" id="CarType" name="CarType" required />
+
+    <label for="Model">Model</label>
+    <input type="text" id="model" name="model" required />
+
     <label for="date">Date</label>
     <input type="date" id="date" name="date" required />
 
     <label for="time">Time</label>
     <input type="time" id="time" name="time" required />
 
-    <label for="message">Message (Optional)</label>
-    <textarea id="message" name="message" rows="4"></textarea>
 
     <button type="submit" id = "bookingConfirm">Book Now</button>
   </form>
@@ -92,5 +96,9 @@
     })
     document.getElementById("email").value = localStorage.getItem("Email");
     document.getElementById("name").value = localStorage.getItem("username");
+
+    document.getElementById("model").value = localStorage.getItem("Model");
+    document.getElementById("CarType").value = localStorage.getItem("CarType");
+
 </script>
 </html>
