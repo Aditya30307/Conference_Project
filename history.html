@@ -65,14 +65,14 @@
   <h2>Booking History</h2>
 
   <div class="history" id="history-container">
-    <!-- History records will be appended here -->
+    
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const historyContainer = document.getElementById("history-container");
 
-      // Retrieve and parse bookings from localStorage
+
       let bookings;
       try {
         const stored = JSON.parse(localStorage.getItem("bookings"));
@@ -81,11 +81,9 @@
         bookings = [];
       }
 
-      // Retrieve the saved location (same for all bookings)
       const savedLocation = JSON.parse(localStorage.getItem("randomLocation")) || { lat: "0", lng: "0" };
       const mapsLink = `https://www.google.com/maps?q=${savedLocation.lat},${savedLocation.lng}`;
 
-      // Create header row
       const header = document.createElement("div");
       header.classList.add("historybox", "history-header");
 
@@ -98,7 +96,6 @@
 
       historyContainer.appendChild(header);
 
-      // Generate rows for each booking
       bookings.forEach(booking => {
         const row = document.createElement("div");
         row.classList.add("historybox");
@@ -118,7 +115,6 @@
         const location = document.createElement("div");
         location.classList.add("elem");
 
-        // Create clickable map link
         const a = document.createElement("a");
         a.href = mapsLink;
         a.target = "_blank";
@@ -135,7 +131,6 @@
         historyContainer.appendChild(row);
       });
 
-      // If no bookings, show message
       if (bookings.length === 0) {
         const msg = document.createElement("p");
         msg.style.textAlign = "center";
