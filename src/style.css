@@ -303,3 +303,12 @@ body{
 .ad-right {
     right: 10px;
 }
+.help{
+    text-decoration: none;
+    display: inline-block;
+    width: 80vw;
+    text-align: center;
+    margin-top: 2em;
+    font-weight:9;
+    font-size: 3em;
+}

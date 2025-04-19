@@ -178,7 +178,18 @@ function saveData() {
           }
         }
         card = 0;
-      } else if (searchChanged == "cleaning") {
+      } else if (searchChanged == "emergency") {
+        removeElement();
+        const helpline  = document.createElement("a");
+	      helpline.classList.add("help");
+        helpline.href = "tel: 6262175662"
+        helpline.textContent= "Call on this no. 6262175662"
+        lower[0].append(helpline);
+
+	
+      } 
+      
+      else if (searchChanged == "cleaning") {
         removeElement();
         for (let i = 0; i < cleaning; i++) {
           card++;
