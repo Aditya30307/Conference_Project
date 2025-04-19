@@ -105,15 +105,15 @@ function saveData() {
   // Ensure ad elements exist before adding event listeners
   if (adnames.length > 0) {
     adnames[0].addEventListener("click", () => {
-      window.location.href = "/booking.html";
       localStorage.setItem("StName", naming[0]); // Set name from the first ad
+      window.location.href = "/booking.html";
       saveData();
       
     });
 
     adnames[1].addEventListener("click", () => {
-      window.location.href = "/booking.html";
       localStorage.setItem("StName", naming[1]); // Set name from the second ad
+      window.location.href = "/booking.html";
       saveData();
     });
   }
@@ -182,11 +182,9 @@ function saveData() {
         removeElement();
         const helpline  = document.createElement("a");
 	      helpline.classList.add("help");
-        helpline.href = "tel: 6262175662"
+        helpline.href = "tel:1234567654"
         helpline.textContent= "Call on this no. 1234567654"
         lower[0].append(helpline);
-
-	
       } 
       
       else if (searchChanged == "cleaning") {
