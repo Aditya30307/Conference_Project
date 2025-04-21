@@ -116,10 +116,9 @@
       document.getElementById("CarType").value = carType;
       document.getElementById("StName").value = StName;
 
-      const lastStName = localStorage.getItem("StNameValue");
-      if (lastStName) {
-        document.getElementById("StName").value = lastStName;
-      }
+      // const StName = localStorage.getItem("StName") || "";
+      document.getElementById("StName").value = StName;
+
 
       document.getElementById("bookingConfirm").addEventListener("click", (e) => {
         e.preventDefault(); 
